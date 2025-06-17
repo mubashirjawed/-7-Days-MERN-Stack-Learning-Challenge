@@ -14,9 +14,15 @@ app.get('/', (req, res) => {
     res.send('hello')
 })
 
-const CONNECTION_URL = "mongodb+srv://demo:<db_password>@clusterdemo0.8wbeaxw.mongodb.net/?retryWrites=true&w=majority&appName=ClusterDemo0"
+const CONNECTION_URL = "mongodb+srv://demo:demo123@clusterdemo0.8wbeaxw.mongodb.net/?retryWrites=true&w=majority&appName=ClusterDemo0"
+
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
-    console.log("Createe");
-})
+mongoose.connect(CONNECTION_URL).then(() => {
+    app.listen(PORT, () => {
+        console.log("Server Runing on ${PORT}")
+
+    })
+
+}).catch((error) => console.log(error.message)
+)
